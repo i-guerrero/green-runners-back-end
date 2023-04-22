@@ -1,17 +1,12 @@
 const express = require("express");
 const greenscores = express.Router();
-// const {
-//   getAllgreenscores,
-//   getgreenscore,
-//   creategreenscore,
-//   deletegreenscore,
-//   updategreenscore,
-// } = require("../queries/greenscores");
-// const {
-//   checkName,
-//   checkDate,
-//   checkBoolean,
-// } = require("../validations/checkgreenscores");
+const {
+  getAllGreenscores,
+  getGreenscore,
+  createGreenscore,
+  deleteGreenscore,
+  updateGreenscore,
+} = require("../queries/greenscores");
 
 // INDEX
 greenscores.get("/", async (req, res) => {
@@ -35,7 +30,7 @@ greenscores.get("/:id", async (req, res) => {
 });
 
 // CREATE
-greenscores.post("/", checkName, checkDate, checkBoolean, async (req, res) => {
+greenscores.post("/", async (req, res) => {
   const greenscore = await createGreenscore(req.body);
   if (greenscore) {
     res.json(greenscore);
@@ -56,16 +51,10 @@ greenscores.delete("/:id", async (req, res) => {
 });
 
 // UPDATE
-greenscores.put(
-  "/:id",
-  checkName,
-  checkDate,
-  checkBoolean,
-  async (req, res) => {
-    const { id } = req.params;
-    const updatedGreenscore = await updateGreenscore(id, req.body);
-    res.status(200).json(updatedGreenscore);
-  }
-);
+greenscores.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  const updatedGreenscore = await updateGreenscore(id, req.body);
+  res.status(200).json(updatedGreenscore);
+});
 
 module.exports = greenscores;
