@@ -6,6 +6,7 @@ CREATE DATABASE greenrunners_dev;
 CREATE TABLE greenscores (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
+    city TEXT,
     electric INT,
     gas INT,
     oil INT,

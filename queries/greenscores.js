@@ -24,9 +24,10 @@ const getGreenscore = async (id) => {
 const createGreenscore = async (greenscore) => {
   try {
     const newGreenscore = db.one(
-      "INSERT INTO greenscores (name, electric, gas, oil, car_mileage, flights, recycle_newspaper, recycle_aluminum) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+      "INSERT INTO greenscores (name, city, electric, gas, oil, car_mileage, flights, recycle_newspaper, recycle_aluminum) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
       [
         greenscore.name,
+        greenscore.city,
         greenscore.electric,
         greenscore.gas,
         greenscore.oil,
@@ -57,9 +58,10 @@ const deleteGreenscore = async (id) => {
 const updateGreenscore = async (id, greenscore) => {
   try {
     const updatedGreenscore = await db.one(
-      "UPDATE greenscores SET name=$1, electric=$2, gas=$3, oil=$4, car_mileage=$5, flights=$6, recycle_newspaper=$7, recycle_aluminum=$8 WHERE id=$9 RETURNING *",
+      "UPDATE greenscores SET name=$1, city=$2, electric=$3, gas=$4, oil=$5, car_mileage=$6, flights=$7, recycle_newspaper=$8, recycle_aluminum=$9 WHERE id=$10 RETURNING *",
       [
         greenscore.name,
+        greenscore.city,
         greenscore.electric,
         greenscore.gas,
         greenscore.oil,
