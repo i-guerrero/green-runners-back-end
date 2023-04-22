@@ -2,7 +2,7 @@ const db = require("../db/dbConfig");
 
 const getAllGreenscores = async () => {
   try {
-    const allGreenscores = await db.any("SELECT * FROM Greenscores");
+    const allGreenscores = await db.any("SELECT * FROM greenscores");
     return allGreenscores;
   } catch (error) {
     return error;
@@ -24,17 +24,16 @@ const getGreenscore = async (id) => {
 const createGreenscore = async (greenscore) => {
   try {
     const newGreenscore = db.one(
-      "INSERT INTO greenscores (name, date, person, place, thing, mood, is_favorite, notes, photo_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      "INSERT INTO greenscores (name, electric, gas, oil, car_mileage, flights, recycle_newspaper, recycle_aluminum) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [
         greenscore.name,
-        greenscore.date,
-        greenscore.person,
-        greenscore.place,
-        greenscore.thing,
-        greenscore.mood,
-        greenscore.is_favorite,
-        greenscore.notes,
-        greenscore.photo_url,
+        greenscore.electric,
+        greenscore.gas,
+        greenscore.oil,
+        greenscore.car_mileage,
+        greenscore.flights,
+        greenscore.recycle_newspaper,
+        greenscore.recycle_aluminum,
       ]
     );
     return newGreenscore;
@@ -58,17 +57,16 @@ const deleteGreenscore = async (id) => {
 const updateGreenscore = async (id, Greenscore) => {
   try {
     const updatedGreenscore = await db.one(
-      "UPDATE greenscores SET name=$1, date=$2, person=$3, place=$4, thing=$5, mood=$6, is_favorite=$7, notes=$8, photo_url=$9 WHERE id=$10 RETURNING *",
+      "UPDATE greenscores SET name=$1, electric=$2, gas=$3, oil=$4, car_mileage=$5, flights=$6, recycle_newspaper=$7, recycle_aluminum=$8, WHERE id=$9 RETURNING *",
       [
-        Greenscore.name,
-        Greenscore.date,
-        Greenscore.person,
-        Greenscore.place,
-        Greenscore.thing,
-        Greenscore.mood,
-        Greenscore.is_favorite,
-        Greenscore.notes,
-        Greenscore.photo_url,
+        greenscore.name,
+        greenscore.electric,
+        greenscore.gas,
+        greenscore.oil,
+        greenscore.car_mileage,
+        greenscore.flights,
+        greenscore.recycle_newspaper,
+        greenscore.recycle_aluminum,
         id,
       ]
     );
