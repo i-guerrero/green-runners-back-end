@@ -17,8 +17,8 @@ app.get(`/`, (req, res) => {
 });
 
 // ENTRIES ROUTES
-// const greenscoresController = require("./controllers/greenscoresController");
-// app.use("/entries", entriesController);
+const greenscoresController = require("./controllers/greenscoresController");
+app.use("/greenscores", greenscoresController);
 
 // 404 PAGE
 app.get("*", (req, res) => {
