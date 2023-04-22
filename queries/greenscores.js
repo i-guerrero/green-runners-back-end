@@ -54,10 +54,10 @@ const deleteGreenscore = async (id) => {
   }
 };
 
-const updateGreenscore = async (id, Greenscore) => {
+const updateGreenscore = async (id, greenscore) => {
   try {
     const updatedGreenscore = await db.one(
-      "UPDATE greenscores SET name=$1, electric=$2, gas=$3, oil=$4, car_mileage=$5, flights=$6, recycle_newspaper=$7, recycle_aluminum=$8, WHERE id=$9 RETURNING *",
+      "UPDATE greenscores SET name=$1, electric=$2, gas=$3, oil=$4, car_mileage=$5, flights=$6, recycle_newspaper=$7, recycle_aluminum=$8 WHERE id=$9 RETURNING *",
       [
         greenscore.name,
         greenscore.electric,
