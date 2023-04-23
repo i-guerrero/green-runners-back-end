@@ -24,7 +24,7 @@ const getGreenscore = async (id) => {
 const createGreenscore = async (greenscore) => {
   try {
     const newGreenscore = db.one(
-      "INSERT INTO greenscores (name, city, electric, gas, oil, car_mileage, flights, recycle_newspaper, recycle_aluminum) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      "INSERT INTO greenscores (name, city, electric, gas, oil, car_mileage, short_flights, long_flights, recycle_newspaper, recycle_aluminum) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
       [
         greenscore.name,
         greenscore.city,
@@ -32,7 +32,8 @@ const createGreenscore = async (greenscore) => {
         greenscore.gas,
         greenscore.oil,
         greenscore.car_mileage,
-        greenscore.flights,
+        greenscore.short_flights,
+        greenscore.long_flights,
         greenscore.recycle_newspaper,
         greenscore.recycle_aluminum,
       ]
@@ -58,7 +59,7 @@ const deleteGreenscore = async (id) => {
 const updateGreenscore = async (id, greenscore) => {
   try {
     const updatedGreenscore = await db.one(
-      "UPDATE greenscores SET name=$1, city=$2, electric=$3, gas=$4, oil=$5, car_mileage=$6, flights=$7, recycle_newspaper=$8, recycle_aluminum=$9 WHERE id=$10 RETURNING *",
+      "UPDATE greenscores SET name=$1, city=$2, electric=$3, gas=$4, oil=$5, car_mileage=$6, short_flights=$7, long_flights=$8, recycle_newspaper=$9, recycle_aluminum=$10 WHERE id=$11 RETURNING *",
       [
         greenscore.name,
         greenscore.city,
@@ -66,7 +67,8 @@ const updateGreenscore = async (id, greenscore) => {
         greenscore.gas,
         greenscore.oil,
         greenscore.car_mileage,
-        greenscore.flights,
+        greenscore.short_flights,
+        greenscore.long_flights,
         greenscore.recycle_newspaper,
         greenscore.recycle_aluminum,
         id,

@@ -11,7 +11,8 @@ CREATE TABLE greenscores (
     gas INT,
     oil INT,
     car_mileage INT,
-    flights INT,
+    short_flights INT,
+    long_flights INT,
     recycle_newspaper BOOLEAN,
     recycle_aluminum BOOLEAN
 );
